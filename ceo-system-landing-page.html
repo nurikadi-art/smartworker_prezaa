@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The CEO System | Free Live Masterclass - Reclaim 20+ Hours/Month</title>
+    <meta name="description" content="Join the free live masterclass and discover the 7-day delegation blueprint to reclaim 20+ hours/month using People + AI leverage system.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #FFD542;
+            --primary-dark: #E5BC00;
+            --secondary: #1C7FFF;
+            --dark: #0F0F0F;
+            --dark-light: #1A1A1A;
+            --white: #FFFFFF;
+            --gray: #A0A0A0;
+            --gray-light: #E5E5E5;
+            --red: #FF4444;
+            --green: #38D25A;
+            --gradient: linear-gradient(135deg, #FFD542 0%, #FFA500 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Urgency Banner */
+        .urgency-banner {
+            background: linear-gradient(90deg, #FF4444 0%, #CC0000 100%);
+            padding: 12px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .urgency-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .urgency-banner p {
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .urgency-banner .pulse-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: var(--white);
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(180deg, var(--dark) 0%, var(--dark-light) 100%);
+            padding: 40px 0 60px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23FFD542" opacity="0.1"/></svg>') repeat;
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 68, 68, 0.2);
+            border: 1px solid var(--red);
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .live-badge .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            border-radius: 50%;
+            margin-right: 10px;
+            animation: pulse 1s infinite;
+        }
+
+        .pre-headline {
+            color: var(--primary);
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 5vw, 52px);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .headline .highlight {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subheadline {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--gray-light);
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-weight: 400;
+        }
+
+        .subheadline strong {
+            color: var(--white);
+        }
+
+        /* Countdown Timer */
+        .countdown-section {
+            background: rgba(255, 213, 66, 0.1);
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 600px;
+        }
+
+        .countdown-label {
+            font-size: 14px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .countdown-item {
+            text-align: center;
+        }
+
+        .countdown-value {
+            background: var(--dark);
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .countdown-unit {
+            font-size: 12px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Webinar Details */
+        .webinar-details {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+
+        .detail-item i {
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: var(--gradient);
+            color: var(--dark);
+            font-size: 22px;
+            font-weight: 800;
+            padding: 20px 50px;
+            border-radius: 10px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(255, 213, 66, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(255, 213, 66, 0.4);
+        }
+
+        .cta-button .main-text {
+            display: block;
+        }
+
+        .cta-button .sub-text {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+
+        .spots-left {
+            margin-top: 15px;
+            font-size: 14px;
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .spots-left i {
+            margin-right: 5px;
+        }
+
+        /* Hero Image */
+        .hero-image {
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Pain Section */
+        .pain-section {
+            background: var(--dark-light);
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-tag {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4vw, 42px);
+            margin-bottom: 20px;
+        }
+
+        .pain-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .pain-story {
+            background: rgba(255, 68, 68, 0.1);
+            border-left: 4px solid var(--red);
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .pain-story p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--gray-light);
+            margin-bottom: 15px;
+        }
+
+        .pain-story p:last-child {
+            margin-bottom: 0;
+        }
+
+        .pain-story strong {
+            color: var(--white);
+        }
+
+        .pain-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pain-stat {
+            text-align: center;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+
+        .pain-stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--red);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .pain-stat-label {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* Future Pacing Section */
+        .future-section {
+            background: linear-gradient(180deg, var(--dark) 0%, #0A1628 100%);
+            padding: 80px 0;
+        }
+
+        .future-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .future-story {
+            background: rgba(56, 210, 90, 0.1);
+            border-left: 4px solid var(--green);
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .future-story p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--gray-light);
+            margin-bottom: 15px;
+        }
+
+        .future-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .future-benefit {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+
+        .future-benefit i {
+            font-size: 24px;
+            color: var(--green);
+            flex-shrink: 0;
+        }
+
+        .future-benefit h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .future-benefit p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* What You'll Learn Section */
+        .learn-section {
+            background: var(--white);
+            color: var(--dark);
+            padding: 80px 0;
+        }
+
+        .learn-section .section-tag {
+            color: var(--secondary);
+        }
+
+        .learn-section .section-title {
+            color: var(--dark);
+        }
+
+        .learn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .learn-item {
+            background: #F8F9FA;
+            border: 2px solid #E5E7EB;
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .learn-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .learn-item-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .learn-item-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .learn-item h3 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .learn-item p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Bonuses Section */
+        .bonuses-section {
+            background: linear-gradient(135deg, #1C7FFF 0%, #0052CC 100%);
+            padding: 80px 0;
+        }
+
+        .bonuses-section .section-tag {
+            color: var(--white);
+            opacity: 0.8;
+        }
+
+        .bonuses-section .section-title {
+            color: var(--white);
+        }
+
+        .bonus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .bonus-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .bonus-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .bonus-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: var(--dark);
+        }
+
+        .bonus-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .bonus-card p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .bonus-value {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--dark);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 15px;
+            border-radius: 50px;
+            margin-top: 15px;
+        }
+
+        /* Social Proof Section */
+        .social-proof-section {
+            background: var(--dark-light);
+            padding: 80px 0;
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .testimonial-stars {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .author-info h4 {
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+
+        .author-info p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* Host Section */
+        .host-section {
+            background: var(--white);
+            color: var(--dark);
+            padding: 80px 0;
+        }
+
+        .host-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .host-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .host-image {
+            position: relative;
+        }
+
+        .host-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .host-badge {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient);
+            color: var(--dark);
+            font-weight: 700;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .host-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .host-credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .host-credentials {
+                justify-content: center;
+            }
+        }
+
+        .credential {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #F8F9FA;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .credential i {
+            color: var(--green);
+        }
+
+        .host-bio {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .host-bio p {
+            margin-bottom: 15px;
+        }
+
+        /* Guarantee Section */
+        .guarantee-section {
+            background: var(--dark);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .guarantee-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(56, 210, 90, 0.1);
+            border: 2px solid var(--green);
+            border-radius: 15px;
+            padding: 40px;
+        }
+
+        .guarantee-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 36px;
+            color: var(--white);
+        }
+
+        .guarantee-box h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .guarantee-box p {
+            font-size: 16px;
+            color: var(--gray-light);
+            line-height: 1.7;
+        }
+
+        /* Final CTA Section */
+        .final-cta-section {
+            background: linear-gradient(180deg, var(--dark-light) 0%, var(--dark) 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .final-cta-section .countdown-section {
+            margin-bottom: 40px;
+        }
+
+        .urgency-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .urgency-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .urgency-item i {
+            color: var(--red);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--white);
+            color: var(--dark);
+            padding: 80px 0;
+        }
+
+        .faq-section .section-title {
+            color: var(--dark);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #E5E7EB;
+            padding: 20px 0;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            padding-top: 15px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* Floating CTA (Mobile) */
+        .floating-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark);
+            padding: 15px 20px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .floating-cta {
+                display: block;
+            }
+
+            body {
+                padding-bottom: 80px;
+            }
+        }
+
+        .floating-cta .cta-button {
+            width: 100%;
+            font-size: 16px;
+            padding: 15px 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .countdown-timer {
+                gap: 10px;
+            }
+
+            .countdown-value {
+                width: 55px;
+                height: 55px;
+                font-size: 22px;
+            }
+
+            .webinar-details {
+                gap: 20px;
+            }
+
+            .pain-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            padding: 20px 0;
+            background: var(--dark);
+        }
+
+        .progress-container {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--red), #FF6B6B);
+            border-radius: 10px;
+            width: 87%;
+            animation: progressPulse 2s infinite;
+        }
+
+        @keyframes progressPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .progress-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--red);
+        }
+    </style>
+</head>
+<body>
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        <p><span class="pulse-dot"></span> WARNING: Registration closes soon! Only 47 spots remaining for this week's masterclass</p>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="live-badge">
+                    <span class="live-dot"></span>
+                    FREE LIVE MASTERCLASS
+                </div>
+
+                <p class="pre-headline">For Entrepreneurs Making $10K+/Month Who Feel Trapped</p>
+
+                <h1 class="headline">
+                    Stop Being The <span class="highlight">Highest-Paid Employee</span> In Your Own Company
+                </h1>
+
+                <p class="subheadline">
+                    Discover the <strong>"CEO System"</strong> that lets you delegate 80% of your work in just 7 days using our proven <strong>People + AI</strong> framework—even if you've been burned by bad hires before.
+                </p>
+
+                <!-- Countdown Timer -->
+                <div class="countdown-section">
+                    <p class="countdown-label"><i class="fas fa-clock"></i> Next Masterclass Starts In:</p>
+                    <div class="countdown-timer" id="countdown">
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="days">00</div>
+                            <div class="countdown-unit">Days</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="hours">00</div>
+                            <div class="countdown-unit">Hours</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="minutes">00</div>
+                            <div class="countdown-unit">Minutes</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="seconds">00</div>
+                            <div class="countdown-unit">Seconds</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="webinar-details">
+                    <div class="detail-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span><strong>Every Wednesday</strong></span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span><strong>3:00 PM EST</strong> (12 Noon PST)</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-hourglass-half"></i>
+                        <span><strong>90 Minutes</strong> of Pure Value</span>
+                    </div>
+                </div>
+
+                <a href="#register" class="cta-button" onclick="openPopup()">
+                    <span class="main-text"><i class="fas fa-bolt"></i> YES! Save My Free Seat Now</span>
+                    <span class="sub-text">+ Get Instant Access to 3 Free Bonuses</span>
+                </a>
+
+                <p class="spots-left"><i class="fas fa-exclamation-triangle"></i> Only 47 of 100 spots remaining — Last week's session had a waitlist!</p>
+
+                <div class="hero-image">
+                    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/bh7ksvCXuReJ4AaVrUfG/media/20ec1894-f646-4cdb-be6c-1ae22dca963b.png" alt="CEO System Masterclass Preview">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Bar -->
+    <section class="progress-section">
+        <div class="container">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p class="progress-text"><i class="fas fa-fire"></i> 87% of spots already claimed!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Section -->
+    <section class="pain-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">The Brutal Truth</p>
+                <h2 class="section-title">Does This Sound Like You?</h2>
+            </div>
+
+            <div class="pain-content">
+                <div class="pain-story">
+                    <p><strong>Picture this:</strong> It's 10 PM again. You're still answering emails, fixing what your last VA messed up, while your family sleeps.</p>
+
+                    <p>You've built a "successful" business... but you're <strong>more exhausted than when you started.</strong></p>
+
+                    <p>Bad hires have cost you thousands. Burnout is stealing your health, your relationships, your vision.</p>
+
+                    <p><strong>Every week you DON'T delegate properly, you're losing 20+ hours</strong> you could spend on growth, family, or just breathing.</p>
+
+                    <p>That's not freedom — that's a <strong>golden handcuff you locked yourself in.</strong></p>
+
+                    <p>The worst part? Most entrepreneurs stay stuck here for YEARS because they don't know the exact system to fix it safely.</p>
+                </div>
+
+                <div class="pain-stats">
+                    <div class="pain-stat">
+                        <div class="pain-stat-number">73%</div>
+                        <div class="pain-stat-label">of entrepreneurs experience burnout</div>
+                    </div>
+                    <div class="pain-stat">
+                        <div class="pain-stat-number">$15K+</div>
+                        <div class="pain-stat-label">average cost of a bad hire</div>
+                    </div>
+                    <div class="pain-stat">
+                        <div class="pain-stat-number">60+</div>
+                        <div class="pain-stat-label">hours/week stuck in the weeds</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Pacing Section -->
+    <section class="future-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">Your New Reality</p>
+                <h2 class="section-title">Imagine This Instead...</h2>
+            </div>
+
+            <div class="future-content">
+                <div class="future-story">
+                    <p><strong>Imagine waking up</strong> to a business that runs without you micromanaging every detail.</p>
+
+                    <p>Your executive VA + AI combo handles ops, customer support, content — <strong>flawlessly.</strong></p>
+
+                    <p>You drop into strategy sessions only when it matters. Revenue climbs while your stress plummets.</p>
+
+                    <p>You finally have time for the gym, vacations, deep work on what lights you up.</p>
+
+                    <p><strong>That's the "CEO Reality"</strong> — and it's closer than you think.</p>
+                </div>
+
+                <div class="future-benefits">
+                    <div class="future-benefit">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Reclaim 20+ Hours/Month</h4>
+                            <p>Spend time on what actually matters</p>
+                        </div>
+                    </div>
+                    <div class="future-benefit">
+                        <i class="fas fa-chart-line"></i>
+                        <div>
+                            <h4>Scale Without Burnout</h4>
+                            <p>Grow revenue while reducing stress</p>
+                        </div>
+                    </div>
+                    <div class="future-benefit">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <h4>Build a Dream Team</h4>
+                            <p>People + AI working in perfect sync</p>
+                        </div>
+                    </div>
+                    <div class="future-benefit">
+                        <i class="fas fa-crown"></i>
+                        <div>
+                            <h4>True CEO Freedom</h4>
+                            <p>Focus on vision, not daily fires</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#register" class="cta-button" onclick="openPopup()">
+                    <span class="main-text"><i class="fas fa-rocket"></i> Claim My Free Spot Now</span>
+                    <span class="sub-text">Before Registration Closes</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Learn Section -->
+    <section class="learn-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">Free Training Agenda</p>
+                <h2 class="section-title">What You'll Discover In This Masterclass</h2>
+            </div>
+
+            <div class="learn-grid">
+                <div class="learn-item">
+                    <div class="learn-item-header">
+                        <div class="learn-item-icon">1</div>
+                        <h3>The 7-Day Delegation Blueprint</h3>
+                    </div>
+                    <p>Our step-by-step process for identifying, documenting, and delegating up to <strong>20 hours of your work in your very first week</strong>—guaranteed. You'll walk away with a complete action plan.</p>
+                </div>
+
+                <div class="learn-item">
+                    <div class="learn-item-header">
+                        <div class="learn-item-icon">2</div>
+                        <h3>The "People + AI" Leverage Formula</h3>
+                    </div>
+                    <p>The secret to pairing a highly skilled human assistant with modern AI tools (like ChatGPT-5 and Grok) to create a <strong>productivity machine that runs without you.</strong></p>
+                </div>
+
+                <div class="learn-item">
+                    <div class="learn-item-header">
+                        <div class="learn-item-icon">3</div>
+                        <h3>The Trust Trigger Onboarding</h3>
+                    </div>
+                    <p>How to onboard an executive VA so they understand your business and vision from Day 1, allowing you to <strong>delegate with confidence</strong> and finally let go of control.</p>
+                </div>
+
+                <div class="learn-item">
+                    <div class="learn-item-header">
+                        <div class="learn-item-icon">4</div>
+                        <h3>The #1 VA Mistake Autopsy</h3>
+                    </div>
+                    <p>Learn why <strong>90% of entrepreneurs fail with VAs</strong> and discover my bulletproof fix to never waste money on bad hires again. This alone will save you thousands.</p>
+                </div>
+
+                <div class="learn-item">
+                    <div class="learn-item-header">
+                        <div class="learn-item-icon">5</div>
+                        <h3>The Path to True Freedom</h3>
+                    </div>
+                    <p>The simple mindset shift + weekly habits that keep you out of the weeds forever and let you focus 100% on <strong>high-level strategy, growth, and vision.</strong></p>
+                </div>
+
+                <div class="learn-item">
+                    <div class="learn-item-header">
+                        <div class="learn-item-icon"><i class="fas fa-gift"></i></div>
+                        <h3>LIVE Q&A Session</h3>
+                    </div>
+                    <p>Get your specific questions answered during our interactive Q&A. <strong>No question is off-limits</strong>—bring your toughest delegation challenges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bonuses Section -->
+    <section class="bonuses-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">Register Now & Get</p>
+                <h2 class="section-title">3 Exclusive Bonuses (FREE)</h2>
+            </div>
+
+            <div class="bonus-grid">
+                <div class="bonus-card">
+                    <div class="bonus-icon"><i class="fas fa-robot"></i></div>
+                    <h3>Top 50 AI Prompts for Delegation</h3>
+                    <p>Copy-paste prompts to instantly leverage AI for your daily tasks. Tested and proven by 7-figure entrepreneurs.</p>
+                    <span class="bonus-value">Value: $197</span>
+                </div>
+
+                <div class="bonus-card">
+                    <div class="bonus-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>My Personal VA Interview Questions</h3>
+                    <p>The exact questions I use to identify A-players and avoid costly hiring mistakes. Screen candidates like a pro.</p>
+                    <span class="bonus-value">Value: $147</span>
+                </div>
+
+                <div class="bonus-card">
+                    <div class="bonus-icon"><i class="fas fa-tasks"></i></div>
+                    <h3>7-Day Delegation Checklist</h3>
+                    <p>A step-by-step checklist to implement everything from the masterclass. Just follow along and transform your business.</p>
+                    <span class="bonus-value">Value: $97</span>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <p style="font-size: 14px; opacity: 0.8; margin-bottom: 20px;">
+                    <i class="fas fa-download"></i> Instant download after registration
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">Join 1,200+ Entrepreneurs</p>
+                <h2 class="section-title">Who've Already Escaped The Hustle Trap</h2>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-number">1,200+</div>
+                    <div class="stat-label">Entrepreneurs Trained</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$2M+</div>
+                    <div class="stat-label">Client Revenue Scaled</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25K+</div>
+                    <div class="stat-label">Hours Reclaimed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">97%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Reclaimed 30 hours/month in the first 3 weeks. Finally hired my first executive VA confidently using Nurik's framework. This changed everything."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SK</div>
+                        <div class="author-info">
+                            <h4>Sarah K.</h4>
+                            <p>SaaS Founder, $500K ARR</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Avoided $15K+ in bad hires thanks to the Trust Trigger system. The People + AI combo is genius—I wish I found this 2 years ago."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MT</div>
+                        <div class="author-info">
+                            <h4>Mike T.</h4>
+                            <p>Agency Owner, 12 Employees</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Finally feel like a real CEO, not an overworked employee. Took my first 2-week vacation in 4 years while revenue actually grew. Incredible."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">LR</div>
+                        <div class="author-info">
+                            <h4>Lisa R.</h4>
+                            <p>Ecom Brand Owner, $1.2M/Year</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Host Section -->
+    <section class="host-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">Your Host</p>
+                <h2 class="section-title" style="color: var(--dark);">Meet Nurik Adilkhanov</h2>
+            </div>
+
+            <div class="host-content">
+                <div class="host-image">
+                    <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/bh7ksvCXuReJ4AaVrUfG/media/68a8b536cfc34e702c537dd2.png" alt="Nurik Adilkhanov">
+                    <span class="host-badge"><i class="fas fa-check-circle"></i> Verified Expert</span>
+                </div>
+
+                <div class="host-info">
+                    <div class="host-credentials">
+                        <span class="credential"><i class="fas fa-check"></i> $1/hr to Multi-6-Figures</span>
+                        <span class="credential"><i class="fas fa-check"></i> 2 Companies Built</span>
+                        <span class="credential"><i class="fas fa-check"></i> 1,200+ Entrepreneurs Trained</span>
+                        <span class="credential"><i class="fas fa-check"></i> 6 Months/Year Traveling</span>
+                    </div>
+
+                    <div class="host-bio">
+                        <p><strong>Nurik isn't your typical business consultant.</strong> He started his journey earning just $1/hour in Central Asia and, through mastering the art of leverage and delegation, built two multi-six-figure companies.</p>
+
+                        <p>He has personally experienced the burnout of being a "Hustler"—working 80+ hour weeks, making all the decisions, fixing every problem. Then he discovered the systems that transformed him from overworked operator to true CEO.</p>
+
+                        <p>Today, he runs his businesses while traveling 6 months per year. His mission is to help founders like you escape the daily grind, build predictable systems, and scale without sacrificing freedom.</p>
+
+                        <p><strong>This isn't theory—it's the exact system that gave Nurik his life back.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section class="guarantee-section">
+        <div class="container">
+            <div class="guarantee-box">
+                <div class="guarantee-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>100% Value Guarantee</h3>
+                <p>This masterclass is completely FREE. If it's not the most valuable 90 minutes you've spent on your business this month, simply unsubscribe. No risk, no obligation. But with a <strong>97% satisfaction rate</strong>, we're confident you'll walk away with game-changing strategies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta-section" id="register">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag">Don't Miss This Opportunity</p>
+                <h2 class="section-title">Your Transformation Starts Here</h2>
+            </div>
+
+            <div class="countdown-section">
+                <p class="countdown-label"><i class="fas fa-clock"></i> Registration Closes In:</p>
+                <div class="countdown-timer" id="countdown2">
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="days2">00</div>
+                        <div class="countdown-unit">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="hours2">00</div>
+                        <div class="countdown-unit">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="minutes2">00</div>
+                        <div class="countdown-unit">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value" id="seconds2">00</div>
+                        <div class="countdown-unit">Seconds</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-list">
+                <div class="urgency-item"><i class="fas fa-fire"></i> Only 47 spots left</div>
+                <div class="urgency-item"><i class="fas fa-clock"></i> Last session had waitlist</div>
+                <div class="urgency-item"><i class="fas fa-lock"></i> Exclusive to email community</div>
+                <div class="urgency-item"><i class="fas fa-calendar-times"></i> Next one's not for months</div>
+            </div>
+
+            <a href="#" class="cta-button" onclick="openPopup(); return false;" style="margin-bottom: 20px;">
+                <span class="main-text"><i class="fas fa-bolt"></i> YES! I'm Ready To Reclaim My Time</span>
+                <span class="sub-text">Register Free + Get Instant Bonuses ($441 Value)</span>
+            </a>
+
+            <p style="font-size: 14px; color: var(--gray); max-width: 600px; margin: 0 auto;">
+                <i class="fas fa-lock"></i> Your information is 100% secure. We respect your privacy and will never spam you.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-tag" style="color: var(--secondary);">Got Questions?</p>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is this really free? What's the catch?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, 100% free. The "catch" is that some attendees choose to work with us further, but there's zero obligation. Most people walk away with valuable insights and never buy anything—and that's perfectly fine. We believe in giving massive value upfront.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>I've tried VAs before and it didn't work. Why is this different?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most VA failures happen because of poor onboarding and unclear systems—not bad VAs. Our Trust Trigger system addresses exactly this. Plus, we'll show you how to combine human talent with AI for 10x leverage that wasn't possible before.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What if I can't attend live?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Register anyway! You'll receive a limited-time replay link. However, live attendees get priority access to bonuses and the Q&A session, so we highly recommend attending live if possible.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>I'm just starting out. Is this for me?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>This masterclass is designed for entrepreneurs already making $10K+/month who are ready to scale. If you're earlier in your journey, the concepts will still be valuable—but you may want to focus on revenue first.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long is the masterclass?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The training is approximately 60-90 minutes, including a live Q&A session at the end. Come with questions ready!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Contact</a>
+            </div>
+            <p>&copy; 2025 Recrutu Virtual Assistants LLC. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating CTA (Mobile) -->
+    <div class="floating-cta">
+        <a href="#" class="cta-button" onclick="openPopup(); return false;">
+            <span class="main-text"><i class="fas fa-bolt"></i> Save My Free Seat</span>
+        </a>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Countdown Timer - Calculate next Wednesday at 3 PM EST
+        function getNextWebinarDate() {
+            const now = new Date();
+            const targetDay = 3; // Wednesday
+            const targetHour = 15; // 3 PM
+
+            let target = new Date(now);
+            target.setHours(targetHour, 0, 0, 0);
+
+            // Convert to EST
+            const estOffset = -5 * 60; // EST is UTC-5
+            const localOffset = now.getTimezoneOffset();
+            const offsetDiff = localOffset + estOffset;
+            target.setMinutes(target.getMinutes() + offsetDiff);
+
+            // Find next Wednesday
+            const daysUntilWednesday = (targetDay - now.getDay() + 7) % 7;
+            if (daysUntilWednesday === 0 && now > target) {
+                target.setDate(target.getDate() + 7);
+            } else {
+                target.setDate(target.getDate() + daysUntilWednesday);
+            }
+
+            return target;
+        }
+
+        function updateCountdown() {
+            const target = getNextWebinarDate();
+            const now = new Date();
+            const diff = target - now;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                // Update first countdown
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+                // Update second countdown
+                document.getElementById('days2').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours2').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes2').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds2').textContent = String(seconds).padStart(2, '0');
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Open Popup Function (connects to GHL popup)
+        function openPopup() {
+            // This will trigger the GHL popup with ID 'hl_main_popup-t_U94WHvxB'
+            const popup = document.getElementById('overlay');
+            if (popup) {
+                popup.classList.add('show');
+                popup.style.display = 'block';
+            }
+
+            // Alternative: dispatch custom event for GHL
+            window.dispatchEvent(new CustomEvent('openHLPopup', {
+                detail: { popupId: 'hl_main_popup-t_U94WHvxB' }
+            }));
+
+            return false;
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId !== '#' && targetId !== '#register') {
+                    e.preventDefault();
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.learn-item, .bonus-card, .testimonial-card, .future-benefit').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            observer.observe(el);
+        });
+
+        // Dynamic spots counter (creates urgency)
+        let spotsRemaining = 47;
+        function updateSpots() {
+            const random = Math.random();
+            if (random < 0.1 && spotsRemaining > 23) {
+                spotsRemaining--;
+                document.querySelectorAll('.spots-left, .urgency-item').forEach(el => {
+                    if (el.textContent.includes('spots')) {
+                        el.innerHTML = el.innerHTML.replace(/\d+/, spotsRemaining);
+                    }
+                });
+            }
+        }
+
+        setInterval(updateSpots, 30000); // Check every 30 seconds
+    </script>
+</body>
+</html>
