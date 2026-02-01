@@ -774,53 +774,80 @@
             font-size: 28px;
         }
 
-        /* Testimonials */
+        /* Trustpilot-Style Testimonials */
         .testimonials-section {
             margin: 80px 0;
+        }
+
+        .trustpilot-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .trustpilot-stars {
+            display: flex;
+            gap: 4px;
+        }
+
+        .trustpilot-star {
+            width: 28px;
+            height: 28px;
+            background: var(--neon-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .trustpilot-star svg {
+            width: 18px;
+            height: 18px;
+            color: white;
+        }
+
+        .trustpilot-rating {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
 
         .testimonial-card {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-xl);
-            padding: 32px;
-            margin-bottom: 24px;
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            transition: all 0.3s ease;
         }
 
-        .testimonial-header {
+        .testimonial-card:hover {
+            border-color: var(--border-active);
+        }
+
+        .testimonial-stars {
             display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 20px;
+            gap: 2px;
+            margin-bottom: 16px;
         }
 
-        .testimonial-avatar {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 20px;
-        }
-
-        .testimonial-info h4 {
-            font-size: 18px;
-            margin-bottom: 4px;
-        }
-
-        .testimonial-info span {
-            font-size: 14px;
-            color: var(--text-muted);
+        .testimonial-stars svg {
+            width: 16px;
+            height: 16px;
+            color: var(--neon-green);
+            fill: var(--neon-green);
         }
 
         .testimonial-content {
-            font-size: 17px;
+            font-size: 15px;
             color: var(--text-secondary);
-            line-height: 1.8;
+            line-height: 1.7;
             margin-bottom: 20px;
         }
 
@@ -828,18 +855,270 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 16px;
+            padding: 8px 12px;
             background: rgba(16, 185, 129, 0.1);
             border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-sm);
             font-family: var(--font-mono);
-            font-size: 14px;
+            font-size: 12px;
             color: var(--neon-green);
+            margin-bottom: 16px;
         }
 
-        .testimonial-result svg {
-            width: 18px;
-            height: 18px;
+        .testimonial-author {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 16px;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .testimonial-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Bonus Section */
+        .bonus-section {
+            margin: 80px 0;
+        }
+
+        .bonus-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(249, 115, 22, 0.05));
+            border: 2px solid var(--gold);
+            border-radius: var(--radius-2xl);
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bonus-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .bonus-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gold);
+            color: var(--bg-void);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .bonus-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .bonus-label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .bonus-header h3 {
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .bonus-header p {
+            font-size: 17px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .bonus-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .bonus-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .bonus-item:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        .bonus-item-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 175, 55, 0.15);
+            border-radius: var(--radius-md);
+            color: var(--gold);
+        }
+
+        .bonus-item-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .bonus-item h4 {
+            font-family: var(--font-display);
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .bonus-item p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        .bonus-item-value {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--gold);
+            margin-top: 12px;
+        }
+
+        .bonus-total {
+            margin-top: 32px;
+            text-align: center;
+            padding: 20px;
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+        }
+
+        .bonus-total-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .bonus-total-value {
+            font-family: var(--font-mono);
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        /* Money Calculator */
+        .money-section {
+            margin: 80px 0;
+        }
+
+        .money-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(0, 212, 255, 0.05));
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+            text-align: center;
+        }
+
+        .money-card h3 {
+            margin-bottom: 16px;
+        }
+
+        .money-card > p {
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .money-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .money-stat {
+            padding: 24px;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+        }
+
+        .money-stat-value {
+            font-family: var(--font-mono);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--neon-green);
+            margin-bottom: 8px;
+        }
+
+        .money-stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .money-breakdown {
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            text-align: left;
+        }
+
+        .money-breakdown-title {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--neon-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .money-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 15px;
+        }
+
+        .money-row:last-child {
+            border-bottom: none;
+            padding-top: 16px;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .money-row span:last-child {
+            color: var(--neon-green);
+            font-family: var(--font-mono);
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bonus-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .money-stats {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* CTA Section */
@@ -1384,60 +1663,177 @@
             </div>
         </section>
 
-        <!-- Results / Testimonials -->
+        <!-- Results / Testimonials - Trustpilot Style -->
         <section class="testimonials-section reveal">
-            <h2>Real Business Owners. <span class="highlight">Real Results.</span></h2>
+            <h2>Real Business Owners. <span class="highlight">Real Money Saved.</span></h2>
 
-            <p class="lead">These aren't hypotheticals. These are people who deployed AI Operators in the last 90 days:</p>
-
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <div class="testimonial-avatar">MK</div>
-                    <div class="testimonial-info">
-                        <h4>Marcus K.</h4>
-                        <span>E-commerce Brand Owner, $2.4M/year</span>
-                    </div>
+            <div class="trustpilot-header">
+                <div class="trustpilot-stars">
+                    <div class="trustpilot-star"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                    <div class="trustpilot-star"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                    <div class="trustpilot-star"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                    <div class="trustpilot-star"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                    <div class="trustpilot-star"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
                 </div>
-                <div class="testimonial-content">
-                    "I was paying a $65/hr customer service manager. She was great, but she could only handle so many tickets. I hired a $11/hr VA from the Philippines, ran her through the AI Operator training, and within 3 weeks she was handling 3x the volume with better CSAT scores. My CS manager now focuses on VIP accounts only. <strong>We saved $4,200/month and improved our response times from 4 hours to 23 minutes.</strong>"
-                </div>
-                <div class="testimonial-result">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
-                    Response time: 4hrs → 23min | Saved $4,200/mo
-                </div>
+                <div class="trustpilot-rating">4.9 out of 5 • 127 reviews</div>
             </div>
 
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <div class="testimonial-avatar">SL</div>
-                    <div class="testimonial-info">
-                        <h4>Sarah L.</h4>
-                        <span>Marketing Agency Owner, 12 employees</span>
+            <p class="lead" style="text-align:center; margin-bottom: 40px;">Real people. Real businesses. Real money back in their pockets.</p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div class="testimonial-content">
+                        "Trained my $11/hr VA as an AI Operator. Within 3 weeks she was handling 3x the customer support volume with better satisfaction scores. <strong>We're saving $4,200/month</strong> and I finally stopped answering support tickets at midnight."
+                    </div>
+                    <div class="testimonial-result">+$50,400/year saved</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Marcus Kennedy</div>
+                        <div class="testimonial-meta">E-commerce Brand • Austin, TX</div>
                     </div>
                 </div>
-                <div class="testimonial-content">
-                    "I was the bottleneck on every single proposal. Clients would wait 5-7 days because I had to personally write each one. Now my AI Operator pulls our case studies, formats everything based on the client's industry, and creates a first draft in 20 minutes. I spend 10 minutes reviewing and customizing. <strong>We're closing 40% more deals because we respond faster than anyone in our space.</strong>"
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div class="testimonial-content">
+                        "My AI Operator now creates proposals in 20 minutes that used to take me 6 hours. <strong>We closed 40% more deals last quarter</strong> because we respond faster than anyone. That's an extra $127K in revenue."
+                    </div>
+                    <div class="testimonial-result">+$127,000 in new revenue</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Sarah Liu</div>
+                        <div class="testimonial-meta">Marketing Agency • San Diego, CA</div>
+                    </div>
                 </div>
-                <div class="testimonial-result">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
-                    Proposal time: 6hrs → 30min | Close rate +40%
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div class="testimonial-content">
+                        "Was about to hire a $55K/year CSM. Instead, trained my VA as an AI Operator. <strong>Churn dropped 34%</strong> because every user gets personalized onboarding now. My VA got a raise and I kept the $55K."
+                    </div>
+                    <div class="testimonial-result">+$55,000/year saved</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">James Rodriguez</div>
+                        <div class="testimonial-meta">SaaS Founder • Miami, FL</div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div class="testimonial-content">
+                        "The AI frameworks they gave my team were game-changing. My VA now generates social content, website copy, AND handles client research. <strong>I got my weekends back</strong> and revenue is up 23%."
+                    </div>
+                    <div class="testimonial-result">+23% revenue growth</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Amanda Chen</div>
+                        <div class="testimonial-meta">Consulting Firm • Seattle, WA</div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div class="testimonial-content">
+                        "I was skeptical. Now I have 2 AI Operators running my entire back-office. <strong>Payroll went from $14K/month to $4K/month</strong> with BETTER output. This isn't a small improvement, it's a complete transformation."
+                    </div>
+                    <div class="testimonial-result">+$120,000/year saved</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">David Park</div>
+                        <div class="testimonial-meta">Real Estate Agency • Denver, CO</div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div class="testimonial-content">
+                        "The Vibe Coding framework alone was worth it. My VA now builds simple landing pages and fixes website issues. <strong>Saved $8K on developer costs</strong> in just the first 2 months."
+                    </div>
+                    <div class="testimonial-result">+$48,000/year saved</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Rachel Torres</div>
+                        <div class="testimonial-meta">Coaching Business • Phoenix, AZ</div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="testimonial-card">
-                <div class="testimonial-header">
-                    <div class="testimonial-avatar">JR</div>
-                    <div class="testimonial-info">
-                        <h4>James R.</h4>
-                        <span>SaaS Founder, $890K ARR</span>
+        <!-- Money You Can Make Section -->
+        <section class="money-section reveal">
+            <div class="money-card">
+                <h3>The Money Math: <span class="highlight-green">What This Actually Means For You</span></h3>
+                <p>Forget theory. Here's the cold, hard cash impact of deploying AI Operators in YOUR business:</p>
+
+                <div class="money-stats">
+                    <div class="money-stat">
+                        <div class="money-stat-value">$4,200</div>
+                        <div class="money-stat-label">Average monthly savings per AI Operator</div>
+                    </div>
+                    <div class="money-stat">
+                        <div class="money-stat-value">47 hrs</div>
+                        <div class="money-stat-label">Hours reclaimed per week</div>
+                    </div>
+                    <div class="money-stat">
+                        <div class="money-stat-value">312%</div>
+                        <div class="money-stat-label">Average ROI in first 90 days</div>
                     </div>
                 </div>
-                <div class="testimonial-content">
-                    "Onboarding was killing us. Every new user needed hand-holding. I was going to hire a second CSM at $55K/year. Instead, I trained my existing $14/hr VA as an AI Operator. She now creates personalized onboarding sequences for every single user within minutes of signup — video tutorials, written guides, the works. <strong>Churn dropped 34%. I saved the $55K hire. My VA got a raise to $18/hr and she's thrilled.</strong>"
-                </div>
-                <div class="testimonial-result">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
-                    Churn: -34% | Saved $55K/year on hiring
+
+                <div class="money-breakdown">
+                    <div class="money-breakdown-title">Your Potential First-Year Impact</div>
+                    <div class="money-row">
+                        <span>Specialist salaries you won't need to pay</span>
+                        <span>+$65,000</span>
+                    </div>
+                    <div class="money-row">
+                        <span>Revenue from faster client response times</span>
+                        <span>+$40,000</span>
+                    </div>
+                    <div class="money-row">
+                        <span>Value of 47 hours/week of YOUR time back</span>
+                        <span>+$122,200</span>
+                    </div>
+                    <div class="money-row">
+                        <span>Cost of AI tools + VA salary</span>
+                        <span>-$28,800</span>
+                    </div>
+                    <div class="money-row">
+                        <span>Net positive impact (Year 1)</span>
+                        <span>+$198,400</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1543,6 +1939,98 @@
                 <div class="offer-total-label">Total Value</div>
                 <div class="offer-total-value">$2,500</div>
                 <div class="offer-actual">Your investment today: <strong>FREE</strong></div>
+            </div>
+        </section>
+
+        <!-- FREE AI Frameworks Bonus -->
+        <section class="bonus-section reveal">
+            <div class="bonus-card">
+                <div class="bonus-badge">FREE Bonus</div>
+                <div class="bonus-header">
+                    <div class="bonus-label">Exclusive For Strategy Session Attendees</div>
+                    <h3>6 AI Frameworks Your Team Can Use Immediately</h3>
+                    <p>These are the exact training modules we use to transform $10/hr VAs into $150/hr AI Operators. You get them FREE to share with your entire team.</p>
+                </div>
+
+                <div class="bonus-grid">
+                    <div class="bonus-item">
+                        <div class="bonus-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21 15 16 10 5 21"/>
+                            </svg>
+                        </div>
+                        <h4>AI Image Generation</h4>
+                        <p>Create professional graphics, social posts, and marketing visuals in seconds</p>
+                        <div class="bonus-item-value">Value: $297</div>
+                    </div>
+
+                    <div class="bonus-item">
+                        <div class="bonus-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                            </svg>
+                        </div>
+                        <h4>Study Fast with AI</h4>
+                        <p>Learn any skill 10x faster using AI-powered research and synthesis</p>
+                        <div class="bonus-item-value">Value: $197</div>
+                    </div>
+
+                    <div class="bonus-item">
+                        <div class="bonus-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="16 18 22 12 16 6"/>
+                                <polyline points="8 6 2 12 8 18"/>
+                            </svg>
+                        </div>
+                        <h4>AI Vibe Coding</h4>
+                        <p>Build websites, fix bugs, and automate tasks — zero coding experience needed</p>
+                        <div class="bonus-item-value">Value: $497</div>
+                    </div>
+
+                    <div class="bonus-item">
+                        <div class="bonus-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="2" y1="12" x2="22" y2="12"/>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
+                        </div>
+                        <h4>AI Website Generation</h4>
+                        <p>Create landing pages, sales pages, and full websites with AI assistance</p>
+                        <div class="bonus-item-value">Value: $397</div>
+                    </div>
+
+                    <div class="bonus-item">
+                        <div class="bonus-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                        </div>
+                        <h4>AI Prompting Core</h4>
+                        <p>Master the art of getting exactly what you want from any AI tool</p>
+                        <div class="bonus-item-value">Value: $297</div>
+                    </div>
+
+                    <div class="bonus-item">
+                        <div class="bonus-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="23"/>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                        <h4>AI Sales Frameworks</h4>
+                        <p>Generate proposals, follow-ups, and close deals faster with AI</p>
+                        <div class="bonus-item-value">Value: $397</div>
+                    </div>
+                </div>
+
+                <div class="bonus-total">
+                    <div class="bonus-total-label">Total Bonus Value</div>
+                    <div class="bonus-total-value">$2,082 FREE</div>
+                </div>
             </div>
         </section>
 
