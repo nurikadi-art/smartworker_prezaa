@@ -1416,6 +1416,86 @@
                 font-size: 18px;
             }
         }
+
+        /* Inline CTA Sections */
+        .inline-cta {
+            text-align: center;
+            padding: 40px 0;
+            margin: 60px 0;
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .inline-cta-text {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .inline-cta-text strong {
+            color: var(--text-primary);
+        }
+
+        .inline-cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font-display);
+            font-size: 17px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .inline-cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 15px 30px rgba(0, 212, 255, 0.25),
+                0 0 60px rgba(168, 85, 247, 0.2);
+        }
+
+        .inline-cta-button svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .inline-cta-subtext {
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Variant styles for different placements */
+        .inline-cta.compact {
+            padding: 30px 0;
+            margin: 40px 0;
+        }
+
+        .inline-cta.highlighted {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(168, 85, 247, 0.05));
+            border: 1px solid var(--border-active);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .inline-cta {
+                padding: 30px 0;
+                margin: 40px 0;
+            }
+
+            .inline-cta-button {
+                padding: 14px 32px;
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1477,6 +1557,21 @@
                 <div class="webinar-date">Wednesday, 3:00 PM EST</div>
             </div>
         </section>
+
+        <!-- Inline CTA 1 -->
+        <div class="inline-cta compact reveal">
+            <p class="inline-cta-text">Can't wait for the masterclass? <strong>Get a personalized walkthrough now.</strong></p>
+            <a href="#" class="inline-cta-button" onclick="openCalendar(); return false;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                Book Your Strategy Session
+            </a>
+            <p class="inline-cta-subtext">Free • 45 minutes • Get the full playbook</p>
+        </div>
 
         <!-- Origin Story -->
         <section class="story-section reveal">
@@ -1542,6 +1637,19 @@
 
             <p>That's when I knew I had found something. <strong>Something most people haven't figured out yet.</strong></p>
         </section>
+
+        <!-- Inline CTA 2 -->
+        <div class="inline-cta highlighted reveal">
+            <p class="inline-cta-text">Ready to discover the exact method? <strong>Let us show you how it works.</strong></p>
+            <a href="#" class="inline-cta-button" onclick="openCalendar(); return false;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polygon points="10 8 16 12 10 16 10 8"/>
+                </svg>
+                See The Full Method
+            </a>
+            <p class="inline-cta-subtext">45-minute strategy session • Completely free</p>
+        </div>
 
         <!-- What Is An AI Operator -->
         <section class="reveal">
@@ -1622,6 +1730,19 @@
             </div>
         </section>
 
+        <!-- Inline CTA 3 -->
+        <div class="inline-cta reveal">
+            <p class="inline-cta-text">Want to run these numbers for <strong>your specific business?</strong></p>
+            <a href="#" class="inline-cta-button" onclick="openCalendar(); return false;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="1" x2="12" y2="23"/>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+                Calculate Your ROI
+            </a>
+            <p class="inline-cta-subtext">We'll run the math together on your free strategy call</p>
+        </div>
+
         <!-- False Beliefs -->
         <section class="beliefs-section reveal">
             <h2>Why Most People Will <span class="highlight-red">Never Figure This Out</span></h2>
@@ -1664,6 +1785,19 @@
                 </div>
             </div>
         </section>
+
+        <!-- Inline CTA 4 -->
+        <div class="inline-cta compact reveal">
+            <p class="inline-cta-text">Ready to break free from these myths? <strong>See how it actually works.</strong></p>
+            <a href="#" class="inline-cta-button" onclick="openCalendar(); return false;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                Get a Live Demo
+            </a>
+            <p class="inline-cta-subtext">We'll show you real examples on a free strategy call</p>
+        </div>
 
         <!-- Results / Testimonials - Trustpilot Style -->
         <section class="testimonials-section reveal">
@@ -1793,6 +1927,18 @@
             </div>
         </section>
 
+        <!-- Inline CTA 5 -->
+        <div class="inline-cta highlighted reveal">
+            <p class="inline-cta-text">Want results like these? <strong>Let's build your custom roadmap.</strong></p>
+            <a href="#" class="inline-cta-button" onclick="openCalendar(); return false;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+                Get Your Personalized Plan
+            </a>
+            <p class="inline-cta-subtext">Free strategy call • Custom blueprint included</p>
+        </div>
+
         <!-- Money You Can Make Section -->
         <section class="money-section reveal">
             <div class="money-card">
@@ -1839,6 +1985,18 @@
                 </div>
             </div>
         </section>
+
+        <!-- Inline CTA 6 -->
+        <div class="inline-cta reveal">
+            <p class="inline-cta-text">Ready to add $198K+ to your bottom line? <strong>Let's map out your first year.</strong></p>
+            <a href="#" class="inline-cta-button" onclick="openCalendar(); return false;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+                Calculate My Savings
+            </a>
+            <p class="inline-cta-subtext">Free ROI analysis on your strategy call</p>
+        </div>
 
         <!-- The Offer -->
         <section class="offer-section reveal">
@@ -1944,6 +2102,19 @@
             </div>
         </section>
 
+        <!-- Inline CTA 7 -->
+        <div class="inline-cta highlighted reveal">
+            <p class="inline-cta-text">$2,500 of value — <strong>completely free.</strong> Claim your session now.</p>
+            <a href="#" class="inline-cta-button" onclick="openCalendar(); return false;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                Claim My Free Session
+            </a>
+            <p class="inline-cta-subtext">Limited spots available this week</p>
+        </div>
+
         <!-- FREE AI Frameworks Bonus -->
         <section class="bonus-section reveal">
             <div class="bonus-card">
@@ -2035,6 +2206,20 @@
                 </div>
             </div>
         </section>
+
+        <!-- Inline CTA 8 -->
+        <div class="inline-cta reveal">
+            <p class="inline-cta-text">Get all 6 AI frameworks plus your custom blueprint — <strong>100% free.</strong></p>
+            <a href="#" class="inline-cta-button" onclick="openCalendar(); return false;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Get Instant Access
+            </a>
+            <p class="inline-cta-subtext">Book your session and get the frameworks immediately</p>
+        </div>
 
         <!-- Guarantee -->
         <section class="guarantee-section reveal">
@@ -2190,14 +2375,16 @@
             }
         });
 
-        // Open Calendar
+        // Open Calendar - triggers hidden GHL button
         function openCalendar() {
-            const ghlButton = document.getElementById('button-JYPRMBAE88_btn');
+            // Trigger the hidden GHL button (button-LI-2Pvgh7r_btn)
+            const ghlButton = document.getElementById('button-LI-2Pvgh7r_btn');
             if (ghlButton) {
                 ghlButton.click();
                 return false;
             }
 
+            // Fallback: dispatch custom event to open popup
             window.dispatchEvent(new CustomEvent('openHLPopup', {
                 detail: { popupId: 'hl_main_popup-t_U94WHvxB' }
             }));
