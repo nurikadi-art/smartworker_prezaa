@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy Your First AI Operator | The CEO System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-blue: #00D4FF;
+            --neon-purple: #A855F7;
+            --neon-green: #10B981;
+            --neon-orange: #F97316;
+            --neon-red: #EF4444;
+            --neon-yellow: #FBBF24;
+
+            --glow-blue: rgba(0, 212, 255, 0.4);
+            --glow-purple: rgba(168, 85, 247, 0.4);
+            --glow-green: rgba(16, 185, 129, 0.3);
+
+            --bg-void: #0A0A0B;
+            --bg-surface: #111113;
+            --bg-elevated: #18181B;
+            --bg-card: rgba(24, 24, 27, 0.6);
+
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-active: rgba(0, 212, 255, 0.3);
+
+            --text-primary: #FAFAFA;
+            --text-secondary: rgba(250, 250, 250, 0.6);
+            --text-muted: rgba(250, 250, 250, 0.4);
+
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-void);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Background Grid Pattern */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Ambient Glow Effects */
+        .ambient-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glow-1 {
+            top: -200px;
+            left: -100px;
+            background: var(--neon-blue);
+        }
+
+        .glow-2 {
+            top: 40%;
+            right: -200px;
+            background: var(--neon-purple);
+        }
+
+        .glow-3 {
+            bottom: 10%;
+            left: 20%;
+            background: var(--neon-green);
+            width: 400px;
+            height: 400px;
+        }
+
+        /* Top Status Bar */
+        .status-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 48px;
+            background: rgba(10, 10, 11, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 1000;
+        }
+
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--neon-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--glow-green); }
+            50% { opacity: 0.8; box-shadow: 0 0 0 4px transparent; }
+        }
+
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .webinar-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 100px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--neon-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .webinar-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--neon-purple);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        /* Main Container */
+        .main-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 24px 60px;
+        }
+
+        /* Hero Section - Command Center */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            min-height: calc(100vh - 140px);
+            padding: 40px 0;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .operator-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-active);
+            border-radius: 100px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--neon-blue);
+            margin-bottom: 24px;
+        }
+
+        .operator-tag svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(42px, 5vw, 64px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        /* Results Loop */
+        .results-loop {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 20px 24px;
+            margin-bottom: 32px;
+        }
+
+        .results-loop-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .results-loop-header svg {
+            width: 14px;
+            height: 14px;
+            color: var(--neon-green);
+        }
+
+        .result-item {
+            display: none;
+            animation: fadeSlide 0.5s ease;
+        }
+
+        .result-item.active {
+            display: block;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-metric {
+            font-family: var(--font-mono);
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--neon-green);
+            margin-bottom: 4px;
+        }
+
+        .result-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .result-source {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        /* Hero Terminal */
+        .hero-terminal {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow:
+                0 0 0 1px rgba(0, 212, 255, 0.1),
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 100px rgba(0, 212, 255, 0.1);
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 20px;
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #FF5F57; }
+        .terminal-dot.yellow { background: #FFBD2E; }
+        .terminal-dot.green { background: #28CA42; }
+
+        .terminal-title {
+            flex: 1;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .terminal-body {
+            padding: 24px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        .terminal-line {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .terminal-prompt {
+            color: var(--neon-blue);
+            user-select: none;
+        }
+
+        .terminal-command {
+            color: var(--text-primary);
+        }
+
+        .terminal-output {
+            color: var(--text-secondary);
+            padding-left: 24px;
+        }
+
+        .terminal-success {
+            color: var(--neon-green);
+        }
+
+        .terminal-highlight {
+            color: var(--neon-purple);
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: var(--neon-blue);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+            margin-left: 4px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Live Build Offer Section */
+        .live-build-section {
+            padding: 100px 0;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--neon-blue);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background: var(--neon-blue);
+        }
+
+        .live-build-card {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(0, 212, 255, 0.1));
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: var(--radius-xl);
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .live-build-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-purple), transparent);
+        }
+
+        .live-build-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .live-build-content h2 {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .live-build-content h2 .accent {
+            color: var(--neon-purple);
+        }
+
+        .live-build-content p {
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .build-features {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .build-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+        }
+
+        .build-feature-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: var(--radius-sm);
+            color: var(--neon-blue);
+        }
+
+        .build-feature-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Webinar Info Card */
+        .webinar-info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+        }
+
+        .webinar-info-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .webinar-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(168, 85, 247, 0.15);
+            border-radius: var(--radius-md);
+            color: var(--neon-purple);
+        }
+
+        .webinar-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .webinar-info-title {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .webinar-info-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .webinar-countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .countdown-unit {
+            text-align: center;
+            padding: 16px 8px;
+            background: var(--bg-surface);
+            border-radius: var(--radius-md);
+        }
+
+        .countdown-value {
+            font-family: var(--font-mono);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--neon-blue);
+            margin-bottom: 4px;
+        }
+
+        .countdown-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .webinar-date {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .webinar-date svg {
+            width: 16px;
+            height: 16px;
+            color: var(--neon-purple);
+        }
+
+        /* Cost of Inaction Section */
+        .cost-section {
+            padding: 100px 0;
+        }
+
+        .cost-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .cost-section h2 .danger {
+            color: var(--neon-red);
+        }
+
+        .cost-subtitle {
+            text-align: center;
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pain-math-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .pain-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pain-card:hover {
+            border-color: var(--neon-red);
+            box-shadow: 0 0 40px rgba(239, 68, 68, 0.1);
+        }
+
+        .pain-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: var(--radius-md);
+            color: var(--neon-red);
+        }
+
+        .pain-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .pain-metric {
+            font-family: var(--font-mono);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--neon-red);
+            margin-bottom: 8px;
+        }
+
+        .pain-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .pain-detail {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Calculator Card */
+        .calculator-card {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(249, 115, 22, 0.05));
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+            text-align: center;
+        }
+
+        .calculator-header {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--neon-orange);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .calculator-equation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+
+        .calc-item {
+            text-align: center;
+        }
+
+        .calc-value {
+            font-family: var(--font-mono);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .calc-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .calc-operator {
+            font-family: var(--font-mono);
+            font-size: 24px;
+            color: var(--text-muted);
+        }
+
+        .calc-result {
+            padding: 24px 40px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: var(--radius-lg);
+            display: inline-block;
+        }
+
+        .calc-result-label {
+            font-size: 12px;
+            color: var(--neon-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .calc-result-value {
+            font-family: var(--font-mono);
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--neon-red);
+        }
+
+        /* Wall of Speed Section */
+        .wall-section {
+            padding: 100px 0;
+        }
+
+        .wall-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .wall-section h2 .highlight {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .wall-subtitle {
+            text-align: center;
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--border-active);
+            transform: translateY(-4px);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-avatar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .avatar-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .avatar-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .avatar-role {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .testimonial-timestamp {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--neon-green);
+            padding: 4px 10px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 100px;
+        }
+
+        .testimonial-content {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-metric {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--neon-blue);
+        }
+
+        /* Scarcity Calendar Section */
+        .scarcity-section {
+            padding: 100px 0;
+        }
+
+        .scarcity-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(168, 85, 247, 0.05));
+            border: 1px solid var(--border-active);
+            border-radius: var(--radius-xl);
+            padding: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scarcity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+        }
+
+        .scarcity-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 100px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--neon-red);
+            margin-bottom: 32px;
+        }
+
+        .scarcity-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--neon-red);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        .scarcity-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .scarcity-section h2 .highlight {
+            color: var(--neon-blue);
+        }
+
+        .scarcity-subtitle {
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Spots Counter */
+        .spots-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .spots-counter {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .spots-number {
+            font-family: var(--font-mono);
+            font-size: 96px;
+            font-weight: 700;
+            color: var(--neon-blue);
+            line-height: 1;
+            text-shadow: 0 0 60px var(--glow-blue);
+        }
+
+        .spots-label {
+            font-family: var(--font-display);
+            font-size: 24px;
+            color: var(--text-secondary);
+        }
+
+        .spots-separator {
+            width: 1px;
+            height: 60px;
+            background: var(--border-subtle);
+        }
+
+        .spots-info {
+            text-align: left;
+        }
+
+        .spots-info-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .spots-info-line svg {
+            width: 16px;
+            height: 16px;
+            color: var(--neon-green);
+        }
+
+        .spots-info-line:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Application Checkbox */
+        .application-box {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            text-align: left;
+        }
+
+        .application-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            cursor: pointer;
+        }
+
+        .checkbox-input {
+            display: none;
+        }
+
+        .checkbox-custom {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--border-active);
+            border-radius: 6px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            margin-top: 2px;
+        }
+
+        .checkbox-input:checked + .checkbox-custom {
+            background: var(--neon-blue);
+            border-color: var(--neon-blue);
+        }
+
+        .checkbox-custom svg {
+            width: 14px;
+            height: 14px;
+            color: var(--bg-void);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .checkbox-input:checked + .checkbox-custom svg {
+            opacity: 1;
+        }
+
+        .checkbox-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .checkbox-text strong {
+            color: var(--text-primary);
+        }
+
+        /* CTA Button */
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px 48px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            border: none;
+            border-radius: var(--radius-lg);
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .cta-button.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .cta-button.active:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 20px 40px rgba(0, 212, 255, 0.3),
+                0 0 60px rgba(168, 85, 247, 0.2);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button.active:hover::before {
+            left: 100%;
+        }
+
+        .cta-button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .cta-subtext {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .live-build-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pain-math-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .spots-display {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .spots-separator {
+                width: 60px;
+                height: 1px;
+            }
+
+            .spots-info {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .status-bar {
+                padding: 0 16px;
+            }
+
+            .main-container {
+                padding: 70px 16px 40px;
+            }
+
+            .live-build-card,
+            .scarcity-card {
+                padding: 32px 20px;
+            }
+
+            .calculator-equation {
+                gap: 16px;
+            }
+
+            .calc-value {
+                font-size: 20px;
+            }
+
+            .calc-result-value {
+                font-size: 36px;
+            }
+
+            .spots-number {
+                font-size: 64px;
+            }
+
+            .cta-button {
+                padding: 16px 32px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="grid-bg"></div>
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="ambient-glow glow-3"></div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-left">
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>SYSTEM ONLINE</span>
+            </div>
+        </div>
+        <div class="status-right">
+            <div class="webinar-badge">
+                <span>Live Deployment: Wednesday 3PM EST</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content reveal">
+                <div class="operator-tag">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                    AI Infrastructure Deployment
+                </div>
+
+                <h1>Deploy Your First<br><span class="highlight">AI Operator</span></h1>
+
+                <p class="hero-subtitle">While you wait for the Wednesday masterclass, secure your spot for a 1:1 strategy session. We'll map your $12/hr tasks and design your operator deployment plan.</p>
+
+                <div class="results-loop">
+                    <div class="results-loop-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                            <polyline points="17 6 23 6 23 12"/>
+                        </svg>
+                        <span>Live Operator Results</span>
+                    </div>
+                    <div class="result-item active" data-index="0">
+                        <div class="result-metric">47 hrs/week</div>
+                        <div class="result-description">Reclaimed by e-commerce founder after operator deployment</div>
+                        <div class="result-source">// deployed 3 weeks ago</div>
+                    </div>
+                    <div class="result-item" data-index="1">
+                        <div class="result-metric">$340K/year</div>
+                        <div class="result-description">Saved on hiring by replacing 4 FTEs with AI operators</div>
+                        <div class="result-source">// roi calculated at 6 months</div>
+                    </div>
+                    <div class="result-item" data-index="2">
+                        <div class="result-metric">2.3 hours</div>
+                        <div class="result-description">Average deployment time for first AI operator</div>
+                        <div class="result-source">// includes training + testing</div>
+                    </div>
+                    <div class="result-item" data-index="3">
+                        <div class="result-metric">$150/hr</div>
+                        <div class="result-description">Effective output from $12/hr VA after AI augmentation</div>
+                        <div class="result-source">// measured via task completion rate</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-terminal reveal">
+                <div class="terminal-header">
+                    <div class="terminal-dot red"></div>
+                    <div class="terminal-dot yellow"></div>
+                    <div class="terminal-dot green"></div>
+                    <div class="terminal-title">ceo-system-terminal</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-command">ceo-system init --operator</span>
+                    </div>
+                    <div class="terminal-output">Scanning business infrastructure...</div>
+                    <div class="terminal-output terminal-success">✓ 47 automatable tasks identified</div>
+                    <div class="terminal-output terminal-success">✓ $12/hr VA capacity detected</div>
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-command">deploy --ai-operator first</span>
+                    </div>
+                    <div class="terminal-output">Configuring operator modules...</div>
+                    <div class="terminal-output terminal-highlight">→ Email triage: ACTIVE</div>
+                    <div class="terminal-output terminal-highlight">→ Calendar optimization: ACTIVE</div>
+                    <div class="terminal-output terminal-highlight">→ Task delegation: ACTIVE</div>
+                    <div class="terminal-output terminal-success">✓ Operator deployed successfully</div>
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-command">status --weekly-hours</span>
+                    </div>
+                    <div class="terminal-output terminal-success">47 hours reclaimed. CEO mode: ENABLED</div>
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span>
+                        <span class="terminal-cursor"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Build Offer Section -->
+        <section class="live-build-section reveal">
+            <div class="section-label">Hard to Say No Offer</div>
+            <div class="live-build-card">
+                <div class="live-build-grid">
+                    <div class="live-build-content">
+                        <h2>We'll <span class="accent">Live-Build</span> Your First Operator On The Call</h2>
+                        <p>This isn't a discovery call where we "learn about your business." We come prepared. You leave with a deployed AI operator handling real tasks within 48 hours of our session.</p>
+
+                        <div class="build-features">
+                            <div class="build-feature">
+                                <div class="build-feature-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14 2 14 8 20 8"/>
+                                        <line x1="16" y1="13" x2="8" y2="13"/>
+                                        <line x1="16" y1="17" x2="8" y2="17"/>
+                                    </svg>
+                                </div>
+                                <span>Pre-call audit of your current systems</span>
+                            </div>
+                            <div class="build-feature">
+                                <div class="build-feature-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                        <line x1="8" y1="21" x2="16" y2="21"/>
+                                        <line x1="12" y1="17" x2="12" y2="21"/>
+                                    </svg>
+                                </div>
+                                <span>Screen-share operator deployment (you watch it happen)</span>
+                            </div>
+                            <div class="build-feature">
+                                <div class="build-feature-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="7 10 12 15 17 10"/>
+                                        <line x1="12" y1="15" x2="12" y2="3"/>
+                                    </svg>
+                                </div>
+                                <span>SOPs + training docs delivered within 48hrs</span>
+                            </div>
+                            <div class="build-feature">
+                                <div class="build-feature-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                    </svg>
+                                </div>
+                                <span>7-day support to ensure operator stability</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="webinar-info-card">
+                        <div class="webinar-info-header">
+                            <div class="webinar-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="webinar-info-title">Masterclass Starting Soon</div>
+                                <div class="webinar-info-subtitle">The CEO System Deep Dive</div>
+                            </div>
+                        </div>
+
+                        <div class="webinar-countdown">
+                            <div class="countdown-unit">
+                                <div class="countdown-value" id="countdown-days">00</div>
+                                <div class="countdown-label">Days</div>
+                            </div>
+                            <div class="countdown-unit">
+                                <div class="countdown-value" id="countdown-hours">00</div>
+                                <div class="countdown-label">Hours</div>
+                            </div>
+                            <div class="countdown-unit">
+                                <div class="countdown-value" id="countdown-minutes">00</div>
+                                <div class="countdown-label">Minutes</div>
+                            </div>
+                            <div class="countdown-unit">
+                                <div class="countdown-value" id="countdown-seconds">00</div>
+                                <div class="countdown-label">Seconds</div>
+                            </div>
+                        </div>
+
+                        <div class="webinar-date">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            <span>Wednesday, 3:00 PM EST</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cost of Inaction Section -->
+        <section class="cost-section">
+            <div class="reveal">
+                <h2>The <span class="danger">Cost</span> of Waiting</h2>
+                <p class="cost-subtitle">Every week without AI operators is money burned. Here's the math your competitors already calculated.</p>
+            </div>
+
+            <div class="pain-math-grid reveal">
+                <div class="pain-card">
+                    <div class="pain-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <div class="pain-metric">23 hrs</div>
+                    <div class="pain-label">Weekly hours on $12/hr tasks</div>
+                    <div class="pain-detail">Tasks AI operators handle in minutes</div>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="23"/>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                    </div>
+                    <div class="pain-metric">$4,600</div>
+                    <div class="pain-label">Monthly opportunity cost</div>
+                    <div class="pain-detail">Based on $200/hr CEO time value</div>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                            <line x1="12" y1="9" x2="12" y2="13"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </div>
+                    <div class="pain-metric">6 mo</div>
+                    <div class="pain-label">Behind AI-first competitors</div>
+                    <div class="pain-detail">The gap widens exponentially</div>
+                </div>
+            </div>
+
+            <div class="calculator-card reveal">
+                <div class="calculator-header">Your Annual Infrastructure Leak</div>
+                <div class="calculator-equation">
+                    <div class="calc-item">
+                        <div class="calc-value">23 hrs</div>
+                        <div class="calc-label">Weekly drain</div>
+                    </div>
+                    <div class="calc-operator">×</div>
+                    <div class="calc-item">
+                        <div class="calc-value">52</div>
+                        <div class="calc-label">Weeks</div>
+                    </div>
+                    <div class="calc-operator">×</div>
+                    <div class="calc-item">
+                        <div class="calc-value">$200</div>
+                        <div class="calc-label">Your hour</div>
+                    </div>
+                    <div class="calc-operator">=</div>
+                </div>
+                <div class="calc-result">
+                    <div class="calc-result-label">Leaked annually</div>
+                    <div class="calc-result-value">$239,200</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wall of Speed Section -->
+        <section class="wall-section">
+            <div class="reveal">
+                <h2>Wall of <span class="highlight">Speed</span></h2>
+                <p class="wall-subtitle">Real operators deployed. Real time recovered. Real results documented.</p>
+            </div>
+
+            <div class="testimonial-grid reveal">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <div class="avatar-circle">MK</div>
+                            <div class="avatar-info">
+                                <div class="avatar-name">Marcus K.</div>
+                                <div class="avatar-role">E-commerce Founder</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-timestamp">deployed 12 days ago</div>
+                    </div>
+                    <div class="testimonial-content">"My VA went from drowning in customer emails to handling 3x the volume. The AI operator pre-drafts responses and she just reviews. Game changer for support quality."</div>
+                    <div class="testimonial-metric">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                        </svg>
+                        Response time: 4hrs → 23min
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <div class="avatar-circle">SL</div>
+                            <div class="avatar-info">
+                                <div class="avatar-name">Sarah L.</div>
+                                <div class="avatar-role">Agency Owner</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-timestamp">deployed 8 days ago</div>
+                    </div>
+                    <div class="testimonial-content">"Finally stopped being the bottleneck on proposals. The operator pulls our case studies, formats everything, and my team just customizes the last 10%. We're closing faster."</div>
+                    <div class="testimonial-metric">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                        </svg>
+                        Proposal time: 6hrs → 45min
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <div class="avatar-circle">JR</div>
+                            <div class="avatar-info">
+                                <div class="avatar-name">James R.</div>
+                                <div class="avatar-role">SaaS Founder</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-timestamp">deployed 19 days ago</div>
+                    </div>
+                    <div class="testimonial-content">"The onboarding operator alone saved us from hiring a second CSM. New users get personalized setup guides within minutes of signing up. Retention is up 34%."</div>
+                    <div class="testimonial-metric">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                        </svg>
+                        Churn reduced by 34%
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <div class="avatar-circle">AP</div>
+                            <div class="avatar-info">
+                                <div class="avatar-name">Amanda P.</div>
+                                <div class="avatar-role">Consulting Firm</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-timestamp">deployed 5 days ago</div>
+                    </div>
+                    <div class="testimonial-content">"I was skeptical about AI touching client work. But the research operator pulls better insights than my junior analysts did. My team focuses on strategy now, not data gathering."</div>
+                    <div class="testimonial-metric">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                        </svg>
+                        Research time: 8hrs → 1hr
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scarcity Calendar Section -->
+        <section class="scarcity-section reveal">
+            <div class="scarcity-card">
+                <div class="scarcity-badge">
+                    <span>Limited Deployment Capacity</span>
+                </div>
+
+                <h2>Ready to Deploy Your <span class="highlight">First Operator</span>?</h2>
+                <p class="scarcity-subtitle">Each deployment requires hands-on configuration. We can only onboard a limited number of operators per week to maintain quality.</p>
+
+                <div class="spots-display">
+                    <div class="spots-counter">
+                        <div class="spots-number" id="spots-remaining">7</div>
+                        <div class="spots-label">spots left<br>this week</div>
+                    </div>
+                    <div class="spots-separator"></div>
+                    <div class="spots-info">
+                        <div class="spots-info-line">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>45-minute strategy session</span>
+                        </div>
+                        <div class="spots-info-line">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Live operator deployment on call</span>
+                        </div>
+                        <div class="spots-info-line">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Custom SOPs + 7-day support</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="application-box">
+                    <label class="application-checkbox">
+                        <input type="checkbox" class="checkbox-input" id="qualify-checkbox">
+                        <div class="checkbox-custom">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <div class="checkbox-text">
+                            <strong>I confirm:</strong> I run a business doing $10K+/month, I have at least one team member or VA, and I'm ready to deploy AI operators within the next 30 days.
+                        </div>
+                    </label>
+                </div>
+
+                <div class="cta-container">
+                    <a href="#" class="cta-button" id="cta-button" onclick="openCalendar(); return false;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        Book Your Deployment Session
+                    </a>
+                    <div class="cta-subtext">Free • 45 minutes • Leave with a working operator</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-text">© 2026 The CEO System. AI-Powered Business Infrastructure.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Results Loop Animation
+        const resultItems = document.querySelectorAll('.result-item');
+        let currentResult = 0;
+
+        function cycleResults() {
+            resultItems.forEach(item => item.classList.remove('active'));
+            resultItems[currentResult].classList.add('active');
+            currentResult = (currentResult + 1) % resultItems.length;
+        }
+
+        setInterval(cycleResults, 4000);
+
+        // Countdown to Wednesday 3PM EST
+        function getNextWednesday3PM() {
+            const now = new Date();
+            const target = new Date(now);
+
+            // Set to 3 PM EST (20:00 UTC)
+            target.setUTCHours(20, 0, 0, 0);
+
+            // Find next Wednesday
+            const currentDay = target.getUTCDay();
+            const daysUntilWednesday = (3 - currentDay + 7) % 7;
+
+            // If it's Wednesday but past 3 PM EST, go to next week
+            if (daysUntilWednesday === 0 && now >= target) {
+                target.setDate(target.getDate() + 7);
+            } else {
+                target.setDate(target.getDate() + daysUntilWednesday);
+            }
+
+            return target;
+        }
+
+        function updateCountdown() {
+            const now = new Date();
+            const target = getNextWednesday3PM();
+            const diff = target - now;
+
+            if (diff <= 0) {
+                // Webinar is live or passed, reset to next week
+                setTimeout(updateCountdown, 1000);
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown-days').textContent = String(days).padStart(2, '0');
+            document.getElementById('countdown-hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('countdown-minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('countdown-seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Spots Counter with localStorage persistence
+        function initSpots() {
+            const storageKey = 'ceoSystemSpots';
+            const stored = localStorage.getItem(storageKey);
+            let spots = 7;
+
+            if (stored) {
+                const data = JSON.parse(stored);
+                const now = new Date();
+                const storedDate = new Date(data.timestamp);
+
+                // Reset every Monday
+                const daysSinceMonday = (now.getDay() + 6) % 7;
+                const lastMonday = new Date(now);
+                lastMonday.setDate(now.getDate() - daysSinceMonday);
+                lastMonday.setHours(0, 0, 0, 0);
+
+                if (storedDate >= lastMonday) {
+                    spots = data.spots;
+                } else {
+                    // New week, reset spots
+                    spots = 7;
+                }
+            }
+
+            // Simulate gradual decrease
+            if (!stored) {
+                spots = Math.floor(Math.random() * 4) + 4; // 4-7 spots
+                localStorage.setItem(storageKey, JSON.stringify({
+                    spots: spots,
+                    timestamp: new Date().toISOString()
+                }));
+            }
+
+            document.getElementById('spots-remaining').textContent = spots;
+        }
+
+        initSpots();
+
+        // Checkbox enables CTA
+        const checkbox = document.getElementById('qualify-checkbox');
+        const ctaButton = document.getElementById('cta-button');
+
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                ctaButton.classList.add('active');
+            } else {
+                ctaButton.classList.remove('active');
+            }
+        });
+
+        // Open Calendar Function
+        function openCalendar() {
+            // Try to click native GHL button if it exists
+            const ghlButton = document.getElementById('button-JYPRMBAE88_btn');
+            if (ghlButton) {
+                ghlButton.click();
+                return false;
+            }
+
+            // Try GHL popup custom event
+            window.dispatchEvent(new CustomEvent('openHLPopup', {
+                detail: { popupId: 'hl_main_popup-t_U94WHvxB' }
+            }));
+
+            return false;
+        }
+
+        // Scroll Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const revealPoint = 150;
+
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal(); // Initial check
+    </script>
+</body>
+</html>
