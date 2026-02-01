@@ -262,6 +262,10 @@
         }
 
         .timeline-step:nth-child(3)::before {
+            border-color: var(--neon-orange);
+        }
+
+        .timeline-step:nth-child(4)::before {
             border-color: var(--neon-purple);
         }
 
@@ -286,6 +290,11 @@
         }
 
         .timeline-step:nth-child(3) .step-badge {
+            background: rgba(249, 115, 22, 0.15);
+            color: var(--neon-orange);
+        }
+
+        .timeline-step:nth-child(4) .step-badge {
             background: rgba(168, 85, 247, 0.15);
             color: var(--neon-purple);
         }
@@ -501,53 +510,6 @@
             color: var(--neon-red);
         }
 
-        /* CTA Button */
-        .cta-section {
-            text-align: center;
-            padding: 40px 0;
-        }
-
-        .add-calendar-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 20px 48px;
-            background: linear-gradient(135deg, var(--neon-green), #059669);
-            border: none;
-            border-radius: 16px;
-            font-family: var(--font-display);
-            font-size: 18px;
-            font-weight: 700;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow:
-                0 8px 24px rgba(16, 185, 129, 0.3),
-                0 0 40px rgba(16, 185, 129, 0.15);
-        }
-
-        .add-calendar-btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow:
-                0 16px 40px rgba(16, 185, 129, 0.4),
-                0 0 60px rgba(16, 185, 129, 0.2);
-        }
-
-        .add-calendar-btn svg {
-            width: 22px;
-            height: 22px;
-        }
-
-        .cta-hint {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-top: 16px;
-        }
-
         /* Final Message */
         .final-message {
             text-align: center;
@@ -597,11 +559,6 @@
 
             .stat-value {
                 font-size: 28px;
-            }
-
-            .add-calendar-btn {
-                width: 100%;
-                padding: 18px 32px;
             }
 
             h1 {
@@ -654,8 +611,8 @@
 
             <div class="timeline">
                 <div class="timeline-step">
-                    <h3>Check Your Email <span class="step-badge">Now</span></h3>
-                    <p>You'll receive a calendar invite with the Zoom link. Add it to your calendar immediately — people who add it are 3x more likely to show up ready and focused.</p>
+                    <h3>Accept Your Calendar Invite <span class="step-badge">Do This Now</span></h3>
+                    <p><strong>Check your email right now</strong> — you'll find a calendar invite with your Zoom link. Accept it immediately so it's locked into your schedule. Don't skip this step — it's the #1 reason people miss their session.</p>
                 </div>
 
                 <div class="timeline-step">
@@ -664,7 +621,12 @@
                 </div>
 
                 <div class="timeline-step">
-                    <h3>Show Up Ready to Transform <span class="step-badge">Call Day</span></h3>
+                    <h3>We'll Reach Out Day-Of <span class="step-badge">Call Day</span></h3>
+                    <p>Our consultant will send you a text or give you a quick call on the day of your session to confirm you're all set. Keep an eye on your phone — we want to make sure nothing gets in the way of your transformation.</p>
+                </div>
+
+                <div class="timeline-step">
+                    <h3>Show Up Ready to Transform <span class="step-badge">Call Time</span></h3>
                     <p>Come with an open mind and your questions ready. In 45 minutes, you'll have a complete roadmap for building your $10/hr to $150/hr talent machine.</p>
                 </div>
             </div>
@@ -810,22 +772,6 @@
             </div>
 
             <p style="margin-bottom: 0;"><strong>The people who get results</strong> from this call are the ones who show up prepared, on time, with specific questions. They treat this like the $2,500 consultation it actually is — not a casual chat they might attend.</p>
-        </section>
-
-        <!-- Add to Calendar CTA -->
-        <section class="cta-section">
-            <a href="#" class="add-calendar-btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                    <line x1="12" y1="14" x2="12" y2="18"></line>
-                    <line x1="10" y1="16" x2="14" y2="16"></line>
-                </svg>
-                Add to My Calendar Now
-            </a>
-            <p class="cta-hint">Don't rely on memory — lock this in right now</p>
         </section>
 
         <!-- Final Message -->
