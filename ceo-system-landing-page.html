@@ -2192,13 +2192,15 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Open Popup Function (connects to GHL popup)
+        // Open Popup Function (triggers native GHL button)
         function openPopup() {
-            const popup = document.getElementById('overlay');
-            if (popup) {
-                popup.classList.add('show');
-                popup.style.display = 'block';
+            // Trigger the native GHL button
+            const ghlButton = document.getElementById('button-JYPRMBAE88_btn');
+            if (ghlButton) {
+                ghlButton.click();
+                return false;
             }
+            // Fallback: dispatch custom event for GHL popup
             window.dispatchEvent(new CustomEvent('openHLPopup', {
                 detail: { popupId: 'hl_main_popup-t_U94WHvxB' }
             }));
